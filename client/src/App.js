@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {BrowserRouter, Switch, Route} from "react-router-dom";
+import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 
 import {quizzes, users} from './examples';
 import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
@@ -15,6 +15,11 @@ class App extends Component {
 		return (
 			<BrowserRouter>
 				<div>
+					<nav>
+						Welcome to Da Vinci Discovery
+							<li><Link to={'/'}>Home</Link></li>
+							<li><Link to={'/about'}>About</Link></li>
+					</nav>
 					<Switch>
 						<Route exact={true} path="/" component={Home} />
 						<Route exact={true} path="/about" component={About} />

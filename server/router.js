@@ -18,7 +18,15 @@ router
       .exec((err, data) => {
         if (err) console.log("error", err);
         else res.json(data);
-      });
+      })
+  })
+  .get("/quizzes", (req, res) => {
+    quizzes
+      .find({})
+      .exec((err, data) => {
+        if (err) console.log("error", err);
+        else res.json(data);
+      })
   })
   .use((req, res) => {
     res.status(400);
