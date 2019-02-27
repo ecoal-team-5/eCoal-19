@@ -11,7 +11,7 @@ class NavBar extends Component {
 	render(){
 		return(
 			<nav className="navbar navbar-expand-lg navbar-dark primary-color">
-				<h4 className="navbar-brand">Welcome to Da Vinci Discovery</h4>
+				<h4 className="navbar-brand">Da Vinci Discovery</h4>
 
 				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
     				<span className="navbar-toggler-icon"></span>
@@ -50,12 +50,12 @@ class Path extends Component {
 			<BrowserRouter>
 				<div>
 					<NavBar />
-						<Switch>
-							<Route exact={true} path="/" component={Home} />
-							<Route exact={true} path="/about" component={About} />
-							<Route exact={true} path="/quizz/:id" component={Quizz}/>
-							<Route path="*" component={() => <p>Page not Found</p>} />
-						</Switch>
+					<Switch>
+						<Route exact={true} path="/" component={Home} />
+						<Route exact={true} path="/about" component={About} />
+						<Route exact={true} path="/quizz/:id" component={Quizz}/>
+						<Route path="*" component={() => <p>Page not Found</p>} />
+					</Switch>
 				</div>
 			</BrowserRouter>
 		)
@@ -72,6 +72,5 @@ class App extends Component {
 		);
     }
 }
-
 
 export default App;
