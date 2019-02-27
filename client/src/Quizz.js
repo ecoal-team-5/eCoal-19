@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import {AxiosInstance as axios} from "axios";
-import {quizzes, users} from './examples';
-import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
+//import {AxiosInstance as axios} from "axios";
+import axios from 'axios';
+
+import {HTTP_SERVER_PORT_PICTURES,HTTP_SERVER_PORT} from './constants.js';
 
 class Question extends Component{
 
@@ -9,7 +10,7 @@ class Question extends Component{
         return(
             <form onSubmit={(e) => this.props.nextQuestion(e)}>
                 <h2>{this.props.question.question}</h2><br/>
-                {this.props.question.imgAnswers.map(img => <div><input type="checkbox" /><img src={HTTP_SERVER_PORT_PICTURES + img} class="imgquizz"/></div> )}
+                {this.props.question.imgAnswers.map(img => <div><input type="checkbox" /><img src={HTTP_SERVER_PORT_PICTURES + img} className="imgquizz" alt="/"/></div> )}
                 {this.props.question.txtAnswers.map(txt => <div><input type="checkbox" name='c' />{txt}</div>  )}
                 <input type="submit" />
             </form>
@@ -21,9 +22,8 @@ class Quizz extends Component {
     constructor(props) {
         super(props);
 
-        this.quizz = quizzes.filter(q => q._uid == this.props.match.params.id)[0];
         this.state = {
-            quizz: [],
+            quizz : null,
             current : 0, 
             score : 0,
             maxScore : 0
@@ -33,14 +33,15 @@ class Quizz extends Component {
     }
 
     async componentDidMount(){
-        const quizzes = (await axios.get('http://localhost;8081/data')).data;
+        const quizz = (await axios.get(HTTP_SERVER_PORT+"quizz/"+this.props.match.params.id)).data;
+        console.log("quizzaxios",quizz);
         this.setState({
-            quizzes
+            quizz : quizz
         });
     }
 
     isEqual(a, b){
-        if (a.length != b.length){
+        if (a.length !== b.length){
             return false;
         }
 
@@ -61,19 +62,21 @@ class Quizz extends Component {
             }
         }
 
-        if(this.isEqual(choices,this.quizz.questions[this.state.current].solutions)){
-            this.setState({score : this.state.score + this.quizz.questions[this.state.current].points});
+        if(this.isEqual(choices,this.state.quizz.questions[this.state.current].solutions)){
+            this.setState({score : this.state.score + this.state.quizz.questions[this.state.current].points});
         }
 
         e.preventDefault();
-        console.log(e.target.elements);
         this.setState({current: this.state.current + 1});
 
-        this.setState({maxScore : this.state.maxScore + this.quizz.questions[this.state.current].points});
+        this.setState({maxScore : this.state.maxScore + this.state.quizz.questions[this.state.current].points});
     }
 
     render(){
-        if(this.state.current== this.quizz.questions.length) 
+        if (this.state.quizz == null)
+           return <p>Loading...</p>;
+        console.log("quizz",this.state.quizz);
+        if(this.state.current === this.state.quizz.questions.length) 
             return (
                 <div>
                     You finished the quizz ! {this.state.score} / {this.state.maxScore}
@@ -82,7 +85,7 @@ class Quizz extends Component {
 
         return(
             <div>
-                <Question nextQuestion={this.nextQuestion} question={this.quizz.questions[this.state.current]} />
+                <Question nextQuestion={this.nextQuestion} question={this.state.quizz.questions[this.state.current]} />
             </div>
         )
     }
