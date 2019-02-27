@@ -6,6 +6,7 @@ const router = express.Router();
 const db = require('./db/mongoose.js');
 const Users = db.users;
 const Quizzes = db.quizzes;
+const FirstPeriod = db.firstPeriod;
 
 
 router
@@ -22,13 +23,15 @@ router
         else res.json(data);
       })
   })
-  .get("/quizzes", (req, res) => {
-    console.log(1);
-    Quizzes
+  .get("/firstPeriod", (req, res) => {
+    console.log(1,FirstPeriod);
+    FirstPeriod
       .find({})
       .exec((err, data) => {
         if (err) console.log("error", err);
-        else res.json(data);
+        else {console.log("data",data);
+        res.json(data);
+        }
       })
   }).
   get("/quizz/:id", (req, res) => {

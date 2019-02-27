@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-//import {quizzes, users} from './examples';
-import {HTTP_SERVER_PORT_PICTURES,HTTP_SERVER_PORT} from './constants.js';
+import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
 
 class QThumb extends Component {
     
@@ -38,6 +37,10 @@ class Home extends Component {
         return(
             <div>
                 {this.state.quizzes.map (q => <QThumb quiz={q} />)}
+                <br/><h4>1420 - 1900</h4><br/>
+                <Link to={'/firstperiod'}>
+                    <img src={HTTP_SERVER_PORT_PICTURES + "firstPeriod.jpg"} alt="/" className="imgquizz"/>
+                </Link>
             </div>
         )
     }

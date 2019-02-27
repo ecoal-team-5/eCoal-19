@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 
-import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
-
 import Home from "./Home.js";
 import About from "./About.js";
 import Quizz from "./Quizz.js";
+import FirstPeriod from "./FirstPeriod.js";
+import AddQuestion from "./AddQuestion.js";
 
 class NavBar extends Component {
 	render(){
@@ -25,16 +25,19 @@ class NavBar extends Component {
 						<li className="nav-item">
 							<Link to={'/about'} className="nav-link">About</Link>
 						</li>
+						<li className="nav-item">
+							<Link to={'/newquestion'} className="nav-link">Add your Question</Link>
+						</li>
 					</ul>
-					<ul class="navbar-nav ml-auto nav-flex-icons">
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"	aria-expanded="false">
-								<i class="fas fa-user"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
+					<ul className="navbar-nav ml-auto nav-flex-icons">
+						<li className="nav-item dropdown">
+							<button className="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"	aria-expanded="false">
+								<i className="fas fa-user"></i>
+							</button>
+							<div className="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
+								<button className="dropdown-item" href="#">Action</button>
+								<button className="dropdown-item" href="#">Another action</button>
+								<button className="dropdown-item" href="#">Something else here</button>
         					</div>
 						</li>
 					</ul>
@@ -54,6 +57,8 @@ class Path extends Component {
 							<Route exact={true} path="/" component={Home} />
 							<Route exact={true} path="/about" component={About} />
 							<Route exact={true} path="/quizz/:id" component={Quizz}/>
+							<Route exact={true} path="/firstperiod" component={FirstPeriod}/>
+							<Route exact={true} path="/newquestion" component={AddQuestion}/>
 							<Route path="*" component={() => <p>Page not Found</p>} />
 						</Switch>
 				</div>
