@@ -5,6 +5,8 @@ const router = express.Router();
 
 const db = require('./db/mongoose.js');
 const Users = db.users;
+const Quizzes = db.quizzes;
+
 
 router
   .use(express.static('resources'))
@@ -21,13 +23,23 @@ router
       })
   })
   .get("/quizzes", (req, res) => {
-    quizzes
+    console.log(1);
+    Quizzes
       .find({})
       .exec((err, data) => {
         if (err) console.log("error", err);
         else res.json(data);
       })
-  })
+  }).
+  get("/quizz/:id", (req, res) => {
+    console.log("Route ", req.params.id);
+    Quizzes.findOne({
+        _id: req.params.id
+    }).exec((err, data) => {
+        if (err) return res.status(500).send(err);
+        else res.json(data);
+    });
+  })  
   .use((req, res) => {
     res.status(400);
     res.json({

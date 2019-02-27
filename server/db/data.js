@@ -1,11 +1,12 @@
-let u1 = {
-    name: 'Toto',
-    passwd: '123'
-  }
 db.users.drop();
-db.users.insert(u1);
+db.users.insert({
+  name: 'Toto',
+  passwd: '123'
+});
+  
 
-let q1 = {
+  db.quizzes.drop();
+  db.quizzes.insert({
     name: 'Quizz 1',
     icon: 'quizz1/quizz1.jpg',
     keywords: ['Kitchen', 'English'],
@@ -34,11 +35,8 @@ let q1 = {
     published: true,
     owner: db.users.findOne({name:'Toto'}),
     scores: []
-  }
-
-
-
-  let q2 = {
+  });
+  db.quizzes.insert({
     name: 'Quizz 2',
     icon: 'quizz2/aix.jpg',
     keywords: ['Aix', 'Tourisme'],
@@ -60,9 +58,4 @@ let q1 = {
     published: true,
     owner: db.users.findOne({name:'Toto'}),
     scores: []
-  };
-  
-
-  db.quizzes.drop();
-  db.quizzes.insert(q1);
-  db.quizzes.insert(q2);
+  });
