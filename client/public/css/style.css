@@ -13,3 +13,7 @@ nav{
 body{
     font-family: Arial;
 }
+
+.wrapper__logo {
+    max-width: 125px;
+}

@@ -7,17 +7,21 @@ import Home from "./Home.js";
 import About from "./About.js";
 import Quizz from "./Quizz.js";
 
+import logo from "./imgs/logo_dvd_without-text.png";
+
 class NavBar extends Component {
 	render(){
 		return(
-			<nav className="navbar navbar-expand-lg navbar-dark primary-color">
-				<h4 className="navbar-brand">Welcome to Da Vinci Discovery</h4>
+			<nav className="navbar navbar-expand-lg navbar-dark secondary-color">
+				<div className="wrapper__logo">
+					<img className="logo img-fluid" src={logo} alt="logo da vinci discovery"></img>
+				</div>
 
 				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
     				<span className="navbar-toggler-icon"></span>
-  				</button>
+  			</button>
 				
-  				<div className="collapse navbar-collapse" id="basicExampleNav">
+  			<div className="collapse navbar-collapse" id="basicExampleNav">
 					<ul className="navbar-nav mr-auto">
 						<li className="nav-item">
 							<Link to={'/'} className="nav-link">Home</Link>
@@ -35,7 +39,7 @@ class NavBar extends Component {
 								<a class="dropdown-item" href="#">Action</a>
 								<a class="dropdown-item" href="#">Another action</a>
 								<a class="dropdown-item" href="#">Something else here</a>
-        					</div>
+        			</div>
 						</li>
 					</ul>
 				</div>

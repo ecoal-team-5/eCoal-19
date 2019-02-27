@@ -11,7 +11,7 @@ class QThumb extends Component {
         return(
             <div>
                 <h4>{this.props.quiz.name}</h4>
-                <Link to={'/quizz/' + this.props.quiz._id}><img src={HTTP_SERVER_PORT_PICTURES + this.props.quiz.icon} alt="/"/> </Link>
+                <Link to={'/quizz/' + this.props.quiz._id}><img src={HTTP_SERVER_PORT_PICTURES + this.props.quiz.icon} alt="/"/>Quizz </Link>
             </div>
         )
     }
