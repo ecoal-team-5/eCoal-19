@@ -1,18 +1,29 @@
 import React, {Component} from 'react';
-//import {AxiosInstance as axios} from "axios";
 import axios from 'axios';
 
 import {HTTP_SERVER_PORT_PICTURES,HTTP_SERVER_PORT} from './constants.js';
 
-class Question extends Component{
+class Question extends Component {
 
     render(){
         return(
             <form onSubmit={(e) => this.props.nextQuestion(e)}>
-                <h2>{this.props.question.question}</h2><br/>
-                {this.props.question.imgAnswers.map(img => <div><input type="checkbox" /><img src={HTTP_SERVER_PORT_PICTURES + img} className="imgquizz" alt="/"/></div> )}
+            <div class="row">
+                <div class="col-md-4">
+                    <div className="place">
+                        <div className="square">
+                            <img className="quizImage" src={HTTP_SERVER_PORT_PICTURES + 'quizz1/quizz1.jpg'} alt="/"/>
+                        </div>
+                    </div>
+                </div>
+                <div>dasd</div>
+            </div>
+            <p>Answer to the questions to learn more about Da Vinci's life.</p>
+                <h4>{this.props.question.question}</h4><br/>
+                {this.props.question.imgAnswers.map(img => <div><input type="checkbox" />
+                <img src={HTTP_SERVER_PORT_PICTURES + img} className="imgquizz" alt="/"/></div> )}
                 {this.props.question.txtAnswers.map(txt => <div><input type="checkbox" name='c' />{txt}</div>  )}
-                <input type="submit" />
+                <input type="submit" value="Next question" />
             </form>
         )
     }
@@ -33,8 +44,8 @@ class Quizz extends Component {
     }
 
     async componentDidMount(){
-        const quizz = (await axios.get(HTTP_SERVER_PORT+"quizz/"+this.props.match.params.id)).data;
-        console.log("quizzaxios",quizz);
+        const quizz = (await axios.get(HTTP_SERVER_PORT + "quizz/" + this.props.match.params.id)).data;
+        console.log("quizzaxios", quizz);
         this.setState({
             quizz : quizz
         });
@@ -56,10 +67,15 @@ class Quizz extends Component {
 
     nextQuestion(e) {
         let choices = [];
+
         for (let i = 0; i < e.target.elements.length; i++){
             if(e.target.elements[i].checked){
                 choices.push(i);
             }
+        }
+
+        if(choices.length === 0) {
+            return;
         }
 
         if(this.isEqual(choices,this.state.quizz.questions[this.state.current].solutions)){
@@ -75,12 +91,10 @@ class Quizz extends Component {
     render(){
         if (this.state.quizz == null)
            return <p>Loading...</p>;
-        console.log("quizz",this.state.quizz);
+        console.log("quizz", this.state.quizz);
         if(this.state.current === this.state.quizz.questions.length) 
             return (
-                <div>
-                    You finished the quizz ! {this.state.score} / {this.state.maxScore}
-                </div>
+                <div>You finished the quizz ! {this.state.score} / {this.state.maxScore}</div>
             ) 
 
         return(
