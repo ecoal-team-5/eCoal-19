@@ -92,13 +92,13 @@ class AddQuestion extends Component {
         let Questions = [];
         if(this.state.answerType === "txt"){
             for(let i= 0 ;i<this.state.nbrQ ;i++){
-                Questions.push("<input type='text' class='text' placeholder='Your question'/><input class='check'  type='checkbox'/><br/>");
+                Questions.push("<input type='text' className='text' placeholder='Your question'/><input className='check'  type='checkbox'/><br/>");
             }
         }
         
         if(this.state.answerType === "img"){
             for(let i= 0 ;i<this.state.nbrQ ;i++){
-                Questions.push("<input class='imgs' type='file'/><input class='check' type='checkbox'/><br/>");
+                Questions.push("<input className='imgs' type='file'/><input className='check' type='checkbox'/><br/>");
             }
         }
         console.log(this.state.answerType);
@@ -107,7 +107,7 @@ class AddQuestion extends Component {
 
             <form onSubmit={(e) =>  this.addToDB(e)}>
                 Your question is about the : 
-                <br /><br /><br /><br /><br /><br /><br /><select class="database" onChange={e => this.handleChange(e)} value={this.state.value}>
+                <br /><br /><br /><br /><br /><br /><br /><select className="database" onChange={e => this.handleChange(e)} value={this.state.value}>
                     <option value="addFirstPeriod">First Period</option>
                     <option value="addSecondPeriod">Second Period</option>
                     <option value="addThirdPeriod">Third Period</option>

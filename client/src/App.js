@@ -43,7 +43,7 @@ class NavBar extends Component {
 
 					<div className="header__toggle" >
 						<div className="toggle__wrapper" onClick={e => this.openMenu()}>
-						<a href="#"><img className="toggle-menu-icon img-fluid" src={toggleMenuOpen} alt ="click to open menu"></img></a>
+						<a><img className="toggle-menu-icon img-fluid" src={toggleMenuOpen} alt ="click to open menu"></img></a>
 					</div>
 						
 					</div>
@@ -55,8 +55,8 @@ class NavBar extends Component {
 						</div>
 						<ul className="menu__list">
 							<Link to={'/'}><li className="menu__list__item" onClick={e => this.closeMenu()}>Home</li></Link>
-							<a href="#"><li className="menu__list__item" onClick={e => this.closeMenu()}>Login</li></a>
-							<a href="#"><li className="menu__list__item">Sign up</li></a>
+							<a><li className="menu__list__item" onClick={e => this.closeMenu()}>Login</li></a>
+							<a><li className="menu__list__item">Sign up</li></a>
 
 							{ Login.getUser() ? <li className="nav-item">
 							<Link to={'/newquestion'} className="nav-link">Add a Question</Link>
