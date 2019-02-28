@@ -26,7 +26,7 @@ class Home extends Component {
     render(){
 
         let firstPeriod = {date : "1452 - 1472",
-        img : "firstPeriod.jpg",
+        img : "/firstPeriod.jpg",
         link : "/firstperiod",
         desc : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vel massa ac est aliquet imperdiet. Aenean tellus neque, euismod ut est at, consequat eleifend ex. In eu semper magna. Fusce egestas convallis odio non cursus. Etiam fringilla feugiat augue, quis faucibus sapien eleifend sed. Donec et neque consectetur odio ornare feugiat."};
 
