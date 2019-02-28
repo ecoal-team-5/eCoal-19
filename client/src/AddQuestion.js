@@ -1,15 +1,18 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 
-import {HTTP_SERVER_PORT_PICTURES,HTTP_SERVER_PORT} from './constants.js';
+import {HTTP_SERVER_PORT} from './constants.js';
+import { cpus } from 'os';
 
 class AddQuestion extends Component {
     constructor(props){
         super(props);
         this.state=({
             answerType : "txt",
-            nbrQ : 2
+            nbrQ : 2,
+            value : "addFirstPeriod"
         })
+        
     }
 
     setquestion(e){
@@ -19,8 +22,6 @@ class AddQuestion extends Component {
           });
     }
 
-
-
     settext(e){
         this.setState({answerType : "txt"});
         
@@ -28,6 +29,11 @@ class AddQuestion extends Component {
     
     setimage(e){
         this.setState({answerType : "img"});
+    }
+
+    handleChange(e){
+        this.setState({value : e.target.value})
+        console.log(this.state.value)
     }
 
     addToDB(e){
@@ -49,12 +55,9 @@ class AddQuestion extends Component {
                 txts.push(qTxts[i].value);
         }
 
-
-
         let imgs = [];
         
         let qImgs = document.getElementsByClassName('imgs');
-        console.log(qImgs[0]);
 
         for(let i = 0; i < qImgs.length;i++) {
             const selectedFile = qImgs[i].files[0];
@@ -63,7 +66,7 @@ class AddQuestion extends Component {
             axios.post(HTTP_SERVER_PORT + "upload", data).then(res => console.log("Res", res));
             imgs.push(selectedFile.name);
         }
-        console.log(e.target.question.value)
+        
         let question = {
             question : e.target.question.value,
             video : null,
@@ -73,11 +76,9 @@ class AddQuestion extends Component {
             points : sols.length
         }
 
-        console.log("Solutions",sols);
-        console.log("textes", txts)
+        console.log("db : ", this.state.value)
 
-
-        axios.post(HTTP_SERVER_PORT + 'addQuestion',   // The json object to add in the collection
+        axios.post(HTTP_SERVER_PORT + this.state.value,   // The json object to add in the collection
             question
         ).then(res => {
         if (res.status === 200)
@@ -106,10 +107,10 @@ class AddQuestion extends Component {
 
             <form onSubmit={(e) =>  this.addToDB(e)}>
                 Your question is about the : 
-                <br /><br /><br /><br /><br /><br /><br /><select value={this.state.database} onChange={this.handleChangeDB}>
-                    <option value="firstPeriod">First Period</option>
-                    <option value="secondPeriod">Second Period</option>
-                    <option value="thirdPeriod">Third Period</option>
+                <br /><br /><br /><br /><br /><br /><br /><select class="database" onChange={e => this.handleChange(e)} value={this.state.value}>
+                    <option value="addFirstPeriod">First Period</option>
+                    <option value="addSecondPeriod">Second Period</option>
+                    <option value="addThirdPeriod">Third Period</option>
                 </select><br/>
 
                 What's your question ? <input type="text" name='question' placeholder="Your question" /><br/>

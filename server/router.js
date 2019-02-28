@@ -98,13 +98,29 @@ router
               })
       }
   }) 
-  .post("/addQuestion", (req, res) => {
+  .post("/addFirstPeriod", (req, res) => {
     const q = new FirstPeriod(req.body);    // The json object is the body of the request
    console.log(q);
     q.save()                          // Save the object.
      .then(item => res.json(item))     // send the object in response
      .catch(err => res.status(400).send("unable to save to database"));
-  })          
+  })   
+
+  .post("/addSecondPeriod", (req, res) => {
+    const q = new SecondPeriod(req.body);    // The json object is the body of the request
+   console.log(q);
+    q.save()                          // Save the object.
+     .then(item => res.json(item))     // send the object in response
+     .catch(err => res.status(400).send("unable to save to database"));
+  })    
+
+  .post("/addThirdPeriod", (req, res) => {
+    const q = new ThirdPeriod(req.body);    // The json object is the body of the request
+   console.log(q);
+    q.save()                          // Save the object.
+     .then(item => res.json(item))     // send the object in response
+     .catch(err => res.status(400).send("unable to save to database"));
+  })       
   .post('/upload', (req, res) => {
     req.files.file.mv(__dirname + '/resources/pictures/' + req.files.file.name,
         (err) => {
