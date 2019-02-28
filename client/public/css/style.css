@@ -6,6 +6,7 @@
 
 a{
     color: inherit;
+    font-family: inherit;
 }
 
 .imgquizz{
@@ -26,7 +27,7 @@ body{
 }
 
 h1, h2, h3{
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'Roboto Slab', Courier, monospace;
 }
 
 .header__nav{
@@ -91,6 +92,7 @@ h1, h2, h3{
 }
 
 #menu{
+    font-family: "Roboto Slab", serif;
     position: fixed;
     top: 0;
     left: 0;
@@ -112,4 +114,9 @@ h1, h2, h3{
     font-size: 26px;
     text-transform: uppercase;
     color: white;
+}
+
+.menu__list a:hover{
+    color: inherit;
+    text-decoration: underline;
 }
