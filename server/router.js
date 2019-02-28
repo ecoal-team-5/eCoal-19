@@ -97,21 +97,14 @@ router
                   }
               })
       }
-  })
-  .use((req, res) => {
-    res.status(400);
-    res.json({
-      error: "Bad request"
-    });
-  })
-  
+  }) 
   .post("/addQuestion", (req, res) => {
-    const q = new firstPeriods(req.body);    // The json object is the body of the request
+    const q = new FirstPeriod(req.body);    // The json object is the body of the request
+   console.log(q);
     q.save()                          // Save the object.
      .then(item => res.json(item))     // send the object in response
      .catch(err => res.status(400).send("unable to save to database"));
   })          
-
   .post('/upload', (req, res) => {
     req.files.file.mv(__dirname + '/resources/pictures/' + req.files.file.name,
         (err) => {
@@ -119,7 +112,16 @@ router
             return res.status(500).send(err);
           res.json({file: req.files.file.name});
         }
-      );
+      )
+
+  .use((req, res) => {
+    res.status(400);
+    res.json({
+      error: "Bad request"
+    });
+  })
+  
+  
   })   ;
 
 

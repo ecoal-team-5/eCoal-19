@@ -8,13 +8,7 @@ class AddQuestion extends Component {
         super(props);
         this.state=({
             answerType : "txt",
-            nbrQ : 2,
-            database: 'firstPeriod',
-            qName : '',
-            qTxtAnswers: [],
-            qImgAnswers: [],
-            qSolutions: [],
-            qPoints: 0 
+            nbrQ : 2
         })
     }
 
@@ -36,22 +30,13 @@ class AddQuestion extends Component {
         this.setState({answerType : "img"});
     }
 
-    handleChangeDB(e){
-        this.setState({database : e.target.value})
-        console.log(this.state.database)
-    }
-
-    handleChangeName(e){
-        this.setState({qName: e.target.value})
-        console.log(this.state.qName)
-    }
-
     addToDB(e){
         e.preventDefault();
 
         let sols = [];
 
         let ch = document.getElementsByClassName('check');
+        console.log("AAA" + ch.length);
         for(let i = 0; i < ch.length;i++) {
             if(ch[i].checked)
                 sols.push(i);
@@ -61,12 +46,24 @@ class AddQuestion extends Component {
 
         let qTxts = document.getElementsByClassName('text');
         for(let i = 0; i < qTxts.length;i++) {
-            if(qTxts[i].checked)
-                txts.push(i);
+                txts.push(qTxts[i].value);
         }
 
-        let imgs = [];
 
+
+        let imgs = [];
+        
+        let qImgs = document.getElementsByClassName('imgs');
+        console.log(qImgs[0]);
+
+        for(let i = 0; i < qImgs.length;i++) {
+            const selectedFile = qImgs[i].files[0];
+            const data = new FormData();
+            data.append('file', selectedFile, selectedFile.name);
+            axios.post(HTTP_SERVER_PORT + "upload", data).then(res => console.log("Res", res));
+            imgs.push(selectedFile.name);
+        }
+        console.log(e.target.question.value)
         let question = {
             question : e.target.question.value,
             video : null,
@@ -80,28 +77,27 @@ class AddQuestion extends Component {
         console.log("textes", txts)
 
 
-        /*axios.post(HTTP_SERVER_PORT + 'addQuestion', {  // The json object to add in the collection
-            question: this.state.qName
-        }).then(res => {
+        axios.post(HTTP_SERVER_PORT + 'addQuestion',   // The json object to add in the collection
+            question
+        ).then(res => {
         if (res.status === 200)
             this.loadData();                     // If everything is ok, reload data in order to upadate the component
         else
             console.log("Failed to add quizz");
         }).catch(err => console.log("Error =>", err));
-        console.log("Envoyé");*/
     }
 
     render(){
         let Questions = [];
         if(this.state.answerType === "txt"){
             for(let i= 0 ;i<this.state.nbrQ ;i++){
-                Questions.push("<input type='text' class='text' placeholder='Your question'/><input type='checkbox'/><br/>");
+                Questions.push("<input type='text' class='text' placeholder='Your question'/><input class='check'  type='checkbox'/><br/>");
             }
         }
         
         if(this.state.answerType === "img"){
             for(let i= 0 ;i<this.state.nbrQ ;i++){
-                Questions.push("<input type='file'/><input class='check' type='checkbox'/><br/>");
+                Questions.push("<input class='imgs' type='file'/><input class='check' type='checkbox'/><br/>");
             }
         }
         console.log(this.state.answerType);
@@ -110,7 +106,7 @@ class AddQuestion extends Component {
 
             <form onSubmit={(e) =>  this.addToDB(e)}>
                 Your question is about the : 
-                <select value={this.state.database} onChange={this.handleChangeDB}>
+                <br /><br /><br /><br /><br /><br /><br /><select value={this.state.database} onChange={this.handleChangeDB}>
                     <option value="firstPeriod">First Period</option>
                     <option value="secondPeriod">Second Period</option>
                     <option value="thirdPeriod">Third Period</option>
