@@ -7,6 +7,8 @@ import Home from "./Home.js";
 import About from "./About.js";
 import Quizz from "./Quizz.js";
 import Login from "./Login";
+import FirstPeriod from "./FirstPeriod.js";
+import AddQuestion from "./AddQuestion.js";
 
 class NavBar extends Component {
 	constructor(props) {
@@ -20,25 +22,32 @@ class NavBar extends Component {
 
 	render(){
 		return(
-			<nav className="navbar navbar-expand-lg navbar-dark primary-color">
-				<h4 className="navbar-brand">Da Vinci Discovery</h4>
-
-				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    				<span className="navbar-toggler-icon"></span>
-  				</button>
-				
-  				<div className="collapse navbar-collapse" id="basicExampleNav">
+			<nav className="navbar navbar-light amber lighten-4 mb-4">
+			
+			  <a className="navbar-brand" href="/">Da Vinci's Discovery</a>
+			
+			  <button className="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20">
+				<div className="animated-icon1"><span></span><span></span><span></span></div>
+			  </button>
+			
+			  <div className="collapse navbar-collapse" id="navbarSupportedContent20">
+			
 					<ul className="navbar-nav mr-auto">
-						<li className="nav-item">
-							<Link to={'/'} className="nav-link">Home</Link>
+						<li className="nav-item active">
+						<Link to={'/'} className="nav-link">Home</Link>
 						</li>
+						{ Login.getUser() ? <li className="nav-item">
+							<Link to={'/newquestion'} className="nav-link">Add a Question</Link>
+							</li> : null }
 						<li className="nav-item">
-							<Link to={'/about'} className="nav-link">About</Link>
-						</li>						
-						{ Login.getUser() ? <li><Link className="nav-link" to={"/protected"}>Protected </Link></li> : null }
+						<Link to={'/about'} className="nav-link">About</Link>
+						</li>
 					</ul>
+
 					<Login checkConnexion={(b) => this.checkConnexion(b)}/>
-				</div>
+			
+			  </div>
+			
 			</nav>
 		)
 	}
@@ -50,12 +59,16 @@ class Path extends Component {
 			<BrowserRouter>
 				<div>
 					<NavBar />
-					<Switch>
-						<Route exact={true} path="/" component={Home} />
-						<Route exact={true} path="/about" component={About} />
-						<Route exact={true} path="/quizz/:id" component={Quizz}/>
-						<Route path="*" component={() => <p>Page not Found</p>} />
-					</Switch>
+						<Switch>
+							<Route exact={true} path="/" component={Home} />
+							<Route exact={true} path="/about" component={About} />
+							<Route exact={true} path="/quizz/:id" component={Quizz}/>
+							<Route exact={true} path="/firstperiod" component={FirstPeriod}/>
+							<Route exact={true} path="/newquestion" component={AddQuestion}/>
+							<Route exact={true} path="/login" component={AddQuestion}/>
+							<Route exact={true} path="/signup" component={AddQuestion}/>
+							<Route path="*" component={() => <p>Page not Found</p>} />
+						</Switch>
 				</div>
 			</BrowserRouter>
 		)
