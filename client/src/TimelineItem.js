@@ -10,7 +10,7 @@ class TimelineItem extends Component {
                 <h1 class="d-flex justify-content-center">1452</h1>
                 <div class="row">
                     <div class="col-md-5 d-flex justify-content-center">
-                        <img src={HTTP_SERVER_PORT_PICTURES + this.props.quiz.icon} alt="/"/>
+                        <img className="imgPeriod" src={HTTP_SERVER_PORT_PICTURES + this.props.quiz.icon} alt="/"/>
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-5 d-flex justify-content-center">
