@@ -13,10 +13,42 @@ db.once('open', () => {
 // database collections
 const usersSchema = mongoose.Schema({
   name: String,
-  password: String
+  password: String,
+  email: String,
+  questions: Number
 });
 
-const quizzesSchema = mongoose.Schema({
+const firstPeriodSchema = mongoose.Schema({
+  question: String,
+  video: String,
+  txtAnswers: [String],
+  imgAnswers: [String],
+  solutions: [Number],
+  points: Number,
+  tip: String
+});
+
+const secondPeriodSchema = mongoose.Schema({
+  question: String,
+  video: String,
+  txtAnswers: [String],
+  imgAnswers: [String],
+  solutions: [Number],
+  points: Number,
+  tip: String
+});
+
+const thirdPeriodSchema = mongoose.Schema({
+  question: String,
+  video: String,
+  txtAnswers: [String],
+  imgAnswers: [String],
+  solutions: [Number],
+  points: Number,
+  tip: String
+});
+
+/*const quizzesSchema = mongoose.Schema({
   name: String,
   icon: String,
   keywords: [],
@@ -24,13 +56,18 @@ const quizzesSchema = mongoose.Schema({
   published: Boolean,
   ownerId: Schema.Types.ObjectId,
   scores: []
-});
+});*/
 
 
 // exports
 const Users = mongoose.model('Users', usersSchema);
-const Quizzes = mongoose.model('Quizzes', quizzesSchema);
+//const Quizzes = mongoose.model('Quizzes', quizzesSchema);
+const FirstPeriod = mongoose.model('FirstPeriod', firstPeriodSchema);
+const secondPeriod = mongoose.model('secondPeriod', firstPeriodSchema);
+const thirdPeriod = mongoose.model('thirdPeriod', firstPeriodSchema);
 
 module.exports = {};
 module.exports.users = Users;
-module.exports.quizzes = Quizzes;
+module.exports.firstPeriod = FirstPeriod;
+module.exports.secondPeriod = secondPeriod;
+module.exports.thirdPeriod = thirdPeriod;
