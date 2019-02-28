@@ -55,17 +55,16 @@ class NavBar extends Component {
 						</div>
 						<ul className="menu__list">
 							<Link to={'/'}><li className="menu__list__item" onClick={e => this.closeMenu()}>Home</li></Link>
-							<a><li className="menu__list__item" onClick={e => this.closeMenu()}>Login</li></a>
-							<a><li className="menu__list__item">Sign up</li></a>
+							<Link to={'/login'}><li className="menu__list__item" onClick={e => this.closeMenu()}>Login</li></Link>
+							<a href="#"><li className="menu__list__item">Sign up</li></a>
 
 							{ Login.getUser() ? <li className="nav-item">
-							<Link to={'/newquestion'} className="nav-link">Add a Question</Link>
+							<Link to={'/newquestion'} className="menu__list__item" onClick={e => this.closeMenu()}>Add a Question</Link>
 							</li> : null }
 						<li className="nav-item">
-						<Link to={'/about'} className="nav-link">About</Link>
+						<Link to={'/about'} className="menu__list__item">About</Link>
 						</li>
 						</ul>
-						<Login checkConnexion={(b) => this.checkConnexion(b)}/>
 					</nav>
 			</div>
 		)
@@ -84,7 +83,7 @@ class Path extends Component {
 							<Route exact={true} path="/quizz/:id" component={Quizz}/>
 							<Route exact={true} path="/firstperiod" component={FirstPeriod}/>
 							<Route exact={true} path="/newquestion" component={AddQuestion}/>
-							<Route exact={true} path="/login" component={AddQuestion}/>
+							<Route exact={true} path="/login" component={Login}/>
 							<Route exact={true} path="/signup" component={AddQuestion}/>
 							<Route path="*" component={() => <p>Page not Found</p>} />
 						</Switch>
