@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from "axios";
-import {Route} from 'react-router-dom';
+import {Route, Redirect} from 'react-router-dom';
 
 import {HTTP_SERVER_PORT} from "./constants";
 
@@ -30,7 +30,9 @@ class Login extends React.Component {
                             user: user,
                             authenticated: true
                         });
-                        this.props.checkConnexion(true);
+
+                        return <Redirect to='/'/>
+                        //this.props.checkConnexion(true);
                     }
                 })
         }
@@ -49,7 +51,7 @@ class Login extends React.Component {
             user: null,
             authenticated: null
         });
-        this.props.checkConnexion(false);
+        return <Redirect to='/'/>
     };
 
     getSessionUser = () => {
@@ -101,7 +103,6 @@ class Login extends React.Component {
     };
 
     renderForm = () => {
-        if (!this.state.renderForm) return null;
         return (
             <form className="form-inline my-2 my-lg-0" onSubmit={e => this.handleForm(e)}>
                 <div>
@@ -129,13 +130,7 @@ class Login extends React.Component {
                 </>
             )
         } else {
-            return (
-                <>
-                    <button type="button" name="login" className="btn btn-secondary my-2 my-sm-0" onClick={this.toggleForm}>login
-                    </button>
-                    {this.renderForm()}
-                </>
-            )
+            return this.renderForm();
         }
 
     }
