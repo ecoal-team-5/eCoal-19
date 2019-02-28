@@ -8,42 +8,46 @@ import About from "./About.js";
 import Quizz from "./Quizz.js";
 
 import logo from "./imgs/logo_dvd_without-text.png";
+import toggleMenuOpen from "./imgs/hamburger-menu.svg";
+import toggleMenuClose from "./imgs/close-menu.svg"
 
 class NavBar extends Component {
+	openMenu() {
+		document.getElementById('menu').style.transform = "translate3d(0vw, 0,0)";
+	}
+	closeMenu() {
+		document.getElementById('menu').style.transform = "translate3d(200vw, 0, 0)";
+	}
 	render(){
-		return(
-			<nav className="navbar navbar-expand-lg navbar-dark secondary-color">
-				<div className="wrapper__logo">
-					<img className="logo img-fluid" src={logo} alt="logo da vinci discovery"></img>
-				</div>
 
-				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav" aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-    				<span className="navbar-toggler-icon"></span>
-  			</button>
-				
-  			<div className="collapse navbar-collapse" id="basicExampleNav">
-					<ul className="navbar-nav mr-auto">
-						<li className="nav-item">
-							<Link to={'/'} className="nav-link">Home</Link>
-						</li>
-						<li className="nav-item">
-							<Link to={'/about'} className="nav-link">About</Link>
-						</li>
-					</ul>
-					<ul class="navbar-nav ml-auto nav-flex-icons">
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"	aria-expanded="false">
-								<i class="fas fa-user"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
-        			</div>
-						</li>
-					</ul>
-				</div>
+
+		return(
+			<div>
+			<nav className="header__nav header__bar">
+
+					<div className="header__wrapper__logo">
+						<Link to={'/'}><img className="logo img-fluid" src={logo} alt="logo da vinci discovery"></img></Link>
+					</div>
+
+					<div className="header__toggle" >
+						<div className="toggle__wrapper" onClick={e => this.openMenu()}>
+						<a href="#"><img className="toggle-menu-icon img-fluid" src={toggleMenuOpen} alt ="click to open menu"></img></a>
+						</div>
+						
+					</div>
+
 			</nav>
+			<nav id='menu' className="menu-primary">
+					<div className="toggle__wrapper toggle__wrapper__close" onClick={e => this.closeMenu()}>
+					<img className="toggle-menu-icon img-fluid" src={toggleMenuClose} alt ="click to close menu"></img>
+					</div>
+				<ul className="menu__list">
+					<Link to={'/'}><li className="menu__list__item">Home</li></Link>
+					<a href="#"><li className="menu__list__item">Login</li></a>
+					<a href="#"><li className="menu__list__item">Sign up</li></a>
+				</ul>
+			</nav>
+			</div>
 		)
 	}
 }

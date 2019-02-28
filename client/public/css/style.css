@@ -1,3 +1,13 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    color: inherit;
+}
+
 .imgquizz{
     width: 200px;
 }
@@ -11,9 +21,91 @@ nav{
 }
 
 body{
-    font-family: Arial;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #fbfae8 !important;
 }
 
-.wrapper__logo {
+h1, h2, h3{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.header__nav{
+    position: fixed;
+    height: 80px;
+    width: 100%;
+    background-color: white;
+}
+
+.header__bar{
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+    position: relative
+}
+
+.header__logo{
+    display: flex;
+}
+
+.header__wrapper__logo{
     max-width: 125px;
+    height: auto;
+    align-self: center;
+}
+
+.header__toggle{
+    height: auto;
+    justify-content: flex-end;
+    width: 100%;
+    display: flex;
+    border: 2px solid white;
+}
+
+.toggle__wrapper{
+    background-color: white;
+    cursor: pointer;
+
+}
+
+.toggle__wrapper__close{
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.header__toggle__close{
+    padding: 30px;
+
+    background-color: white;
+    cursor: pointer 
+}
+
+.toggle-menu-icon{
+    height: 80px;
+    align-self: center;
+    margin-right: 1em;
+}
+
+#menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+    background-color: #7a0026;
+    transform: translate3d(200vw, 0, 0);
+    transition: all ease-in-out 0.6s
+}
+
+.toggle-close{
+    font-size: 30px;
+}
+
+.menu__list{
+    margin: auto;
+    list-style: none;
+    font-size: 26px;
+    text-transform: capitalize;
+    color: white;
 }
