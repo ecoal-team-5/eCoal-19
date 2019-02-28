@@ -105,12 +105,10 @@ class Login extends React.Component {
         return (
             <form className="form-inline my-2 my-lg-0" onSubmit={e => this.handleForm(e)}>
                 <div>
-                    <label>Username:</label>
-                    <input type="text" name="username"/>
+                    <input type="text" name="username" placeholder="Username" />
                 </div>
                 <div>
-                    <label>Password:</label>
-                    <input type="password" name="password"/>
+                    <input type="password" name="password" placeholder="Password" />
                 </div>
                 <div>
                     <button type="submit" name="login" value="Log In" onClick={() => this.mark(LOGIN)}>Login</button>
@@ -124,19 +122,19 @@ class Login extends React.Component {
     render = () => {
         if (this.state.user && this.state.authenticated) {
             return (
-                <div>
+                <>
                     <p>{this.state.user.username}</p>
                     <button type="button" name="logout" className="btn btn-secondary" onClick={this.logout}>logout
                     </button>
-                </div>
+                </>
             )
         } else {
             return (
-                <div>
+                <>
                     <button type="button" name="login" className="btn btn-secondary my-2 my-sm-0" onClick={this.toggleForm}>login
                     </button>
                     {this.renderForm()}
-                </div>
+                </>
             )
         }
 
