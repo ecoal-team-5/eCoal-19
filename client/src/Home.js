@@ -27,15 +27,15 @@ class Home extends Component {
 
         let firstPeriod = {date : "1452 - 1472",
         img : "firstPeriod.jpg",
-        link : "/firstperiod/"};
+        link : "firstperiod/"};
 
         let secondPeriod = {date : "1472 - 1492",
         img : "secondPeriod.jpg",
-        link : "/secondperiod/"};
+        link : "secondperiod/"};
 
         let thirdPeriod = {date : "1492 - 1519",
         img : "thirdPeriod.jpg",
-        link : "/thirdperiod/"};
+        link : "thirdperiod/"};
 
         let periods = [firstPeriod, secondPeriod, thirdPeriod];
 
