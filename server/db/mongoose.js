@@ -48,10 +48,22 @@ const thirdPeriodSchema = mongoose.Schema({
   tip: String
 });
 
+/*const quizzesSchema = mongoose.Schema({
+  name: String,
+  icon: String,
+  keywords: [],
+  questions: [],
+  published: Boolean,
+  ownerId: Schema.Types.ObjectId,
+  scores: []
+});*/
+
+
 // exports
 const Users = mongoose.model('Users', usersSchema);
+//const Quizzes = mongoose.model('Quizzes', quizzesSchema);
 const FirstPeriod = mongoose.model('FirstPeriod', firstPeriodSchema);
-const SecondPeriod = mongoose.model('SecondPeriod',secondPeriodSchema);
+const SecondPeriod = mongoose.model('SecondPeriod', secondPeriodSchema);
 const ThirdPeriod = mongoose.model('ThirdPeriod', thirdPeriodSchema);
 
 module.exports = {};

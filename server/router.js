@@ -7,6 +7,8 @@ const db = require('./db/mongoose.js');
 const Users = db.users;
 const Quizzes = db.quizzes;
 const FirstPeriod = db.firstPeriod;
+const SecondPeriod = db.secondPeriod;
+const ThirdPeriod = db.thirdPeriod;
 
 const protect = (req, res, f) => {
   if (!req.headers || !req.headers.username || !req.headers.password) {
@@ -46,6 +48,28 @@ router
   .get("/firstPeriod", (req, res) => {
     console.log(1,FirstPeriod);
     FirstPeriod
+      .find({})
+      .exec((err, data) => {
+        if (err) console.log("error", err);
+        else {console.log("data",data);
+        res.json(data);
+        }
+      })
+  })
+  .get("/secondPeriod", (req, res) => {
+    console.log(1,SecondPeriod);
+    SecondPeriod
+      .find({})
+      .exec((err, data) => {
+        if (err) console.log("error", err);
+        else {console.log("data",data);
+        res.json(data);
+        }
+      })
+  })
+  .get("/thirdPeriod", (req, res) => {
+    console.log(1,ThirdPeriod);
+    ThirdPeriod
       .find({})
       .exec((err, data) => {
         if (err) console.log("error", err);

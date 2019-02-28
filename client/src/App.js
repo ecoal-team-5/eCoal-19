@@ -7,6 +7,8 @@ import Quizz from "./Quizz.js";
 
 import Login from "./Login";
 import FirstPeriod from "./FirstPeriod.js";
+import SecondPeriod from "./SecondPeriod.js";
+import ThirdPeriod from "./ThirdPeriod.js";
 import AddQuestion from "./AddQuestion.js";
 
 import logo from "./imgs/logo.png";
@@ -82,6 +84,8 @@ class Path extends Component {
 							<Route exact={true} path="/about" component={About} />
 							<Route exact={true} path="/quizz/:id" component={Quizz}/>
 							<Route exact={true} path="/firstperiod" component={FirstPeriod}/>
+							<Route exact={true} path="/secondperiod" component={SecondPeriod}/>
+							<Route exact={true} path="/thirdperiod" component={ThirdPeriod}/>
 							<Route exact={true} path="/newquestion" component={AddQuestion}/>
 							<Route exact={true} path="/login" component={Login}/>
 							<Route exact={true} path="/signup" component={AddQuestion}/>
