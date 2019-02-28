@@ -6,8 +6,18 @@ import {HTTP_SERVER_PORT_PICTURES} from './constants.js';
 import Home from "./Home.js";
 import About from "./About.js";
 import Quizz from "./Quizz.js";
+import Login from "./Login";
 
 class NavBar extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {connected: false};
+	}
+
+	checkConnexion(connected) {
+		if (connected !== this.state.connected) this.setState({connected: connected})
+	}
+
 	render(){
 		return(
 			<nav className="navbar navbar-expand-lg navbar-dark primary-color">
@@ -24,20 +34,10 @@ class NavBar extends Component {
 						</li>
 						<li className="nav-item">
 							<Link to={'/about'} className="nav-link">About</Link>
-						</li>
+						</li>						
+						{ Login.getUser() ? <li><Link className="nav-link" to={"/protected"}>Protected </Link></li> : null }
 					</ul>
-					<ul class="navbar-nav ml-auto nav-flex-icons">
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true"	aria-expanded="false">
-								<i class="fas fa-user"></i>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-333">
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
-        					</div>
-						</li>
-					</ul>
+					<Login checkConnexion={(b) => this.checkConnexion(b)}/>
 				</div>
 			</nav>
 		)

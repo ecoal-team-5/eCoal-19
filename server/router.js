@@ -30,8 +30,8 @@ router
         if (err) console.log("error", err);
         else res.json(data);
       })
-  }).
-  get("/quizz/:id", (req, res) => {
+  })
+  .get("/quizz/:id", (req, res) => {
     console.log("Route ", req.params.id);
     Quizzes.findOne({
         _id: req.params.id
@@ -39,7 +39,40 @@ router
         if (err) return res.status(500).send(err);
         else res.json(data);
     });
-  })  
+  })
+  .post("/login", (req, res) => {
+    if (!req.body.username || !req.body.password) {
+        res.json({isConnected: false})
+    } else {
+        Users.findOne({name: req.body.username, passwd: req.body.password})
+            .exec((err, data) => {
+                if (err) console.log("error", err);
+                else {
+                    if (data) res.json({isConnected: true});
+                    else res.json({isConnected: false})
+                }
+            })
+    }
+  })
+  .post("/signUp", (req, res) => {
+      if (!req.body.username || !req.body.password) {
+          res.json({isConnected: false})
+      } else {
+          Users.findOne({name: req.body.username})
+              .exec((err, data) => {
+                  if (err) console.log("error", err);
+                  else {
+                      if (data) res.json({isConnected: false});
+                      else {
+                          const user = new Users({name: req.body.username, passwd: req.body.password});
+                          user.save()
+                              .then(() => res.json({isConnected: true}))
+                              .catch(err => res.status(400).send("Unable to save to database:", err))
+                      }
+                  }
+              })
+      }
+  })
   .use((req, res) => {
     res.status(400);
     res.json({
