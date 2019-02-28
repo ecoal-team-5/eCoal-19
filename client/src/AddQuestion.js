@@ -49,9 +49,38 @@ class AddQuestion extends Component {
     addToDB(e){
         e.preventDefault();
 
-        let qName = e.target.elements()
+        let sols = [];
 
-        axios.post(HTTP_SERVER_PORT + 'addQuestion', {  // The json object to add in the collection
+        let ch = document.getElementsByClassName('check');
+        for(let i = 0; i < ch.length;i++) {
+            if(ch[i].checked)
+                sols.push(i);
+        }        
+        
+        let txts = [];
+
+        let qTxts = document.getElementsByClassName('text');
+        for(let i = 0; i < qTxts.length;i++) {
+            if(qTxts[i].checked)
+                txts.push(i);
+        }
+
+        let imgs = [];
+
+        let question = {
+            question : e.target.question.value,
+            video : null,
+            txtAnswers: txts,
+            imgAnswers: imgs,
+            solutions: sols,
+            points : sols.length
+        }
+
+        console.log("Solutions",sols);
+        console.log("textes", txts)
+
+
+        /*axios.post(HTTP_SERVER_PORT + 'addQuestion', {  // The json object to add in the collection
             question: this.state.qName
         }).then(res => {
         if (res.status === 200)
@@ -59,20 +88,20 @@ class AddQuestion extends Component {
         else
             console.log("Failed to add quizz");
         }).catch(err => console.log("Error =>", err));
-        console.log("Envoyé");
+        console.log("Envoyé");*/
     }
 
     render(){
         let Questions = [];
         if(this.state.answerType === "txt"){
             for(let i= 0 ;i<this.state.nbrQ ;i++){
-                Questions.push("<input type='text' placeholder='Your question'/><input type='checkbox'/><br/>");
+                Questions.push("<input type='text' class='text' placeholder='Your question'/><input type='checkbox'/><br/>");
             }
         }
         
         if(this.state.answerType === "img"){
             for(let i= 0 ;i<this.state.nbrQ ;i++){
-                Questions.push("<input type='file'/><input type='checkbox'/><br/>");
+                Questions.push("<input type='file'/><input class='check' type='checkbox'/><br/>");
             }
         }
         console.log(this.state.answerType);
@@ -87,7 +116,7 @@ class AddQuestion extends Component {
                     <option value="thirdPeriod">Third Period</option>
                 </select><br/>
 
-                What's your question ? <input type="text" placeholder="Your question" /><br/>
+                What's your question ? <input type="text" name='question' placeholder="Your question" /><br/>
 
                 <input type="radio" onChange={e => this.settext(e)} name="answer" checked={this.state.answerType === 'txt'}/> Text Answers
                 <input type="radio" onChange={e => this.setimage(e)} name="answer" checked={this.state.answerType === 'img'}/> Image Answers<br/>
