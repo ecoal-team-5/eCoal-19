@@ -40,7 +40,10 @@ h1, h2, h3{
     display: flex;
     width: 100%;
     align-items: stretch;
-    position: relative
+    position: fixed;
+    top: 0;
+    left: 0;
+
 }
 
 .header__logo{
@@ -48,9 +51,10 @@ h1, h2, h3{
 }
 
 .header__wrapper__logo{
-    max-width: 125px;
+    max-width: 200px;
     height: auto;
     align-self: center;
+    margin-left: 15px;
 }
 
 .header__toggle{
@@ -106,6 +110,6 @@ h1, h2, h3{
     margin: auto;
     list-style: none;
     font-size: 26px;
-    text-transform: capitalize;
+    text-transform: uppercase;
     color: white;
 }

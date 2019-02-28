@@ -7,7 +7,7 @@ import Home from "./Home.js";
 import About from "./About.js";
 import Quizz from "./Quizz.js";
 
-import logo from "./imgs/logo_dvd_without-text.png";
+import logo from "./imgs/logo.png";
 import toggleMenuOpen from "./imgs/hamburger-menu.svg";
 import toggleMenuClose from "./imgs/close-menu.svg"
 
