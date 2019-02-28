@@ -23,7 +23,7 @@ class NavBar extends Component {
 		return(
 			<nav className="navbar navbar-light amber lighten-4 mb-4">
 			
-			  <a className="navbar-brand" href="#">Da Vinci's Discovery</a>
+			  <h4 className="navbar-brand">Da Vinci's Discovery</h4>
 			
 			  <button className="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20">
 				<div className="animated-icon1"><span></span><span></span><span></span></div>

@@ -10,12 +10,12 @@ class TimelineItem extends Component {
                 <h1 class="d-flex justify-content-center">{this.props.periods.date}</h1>
                 <div class="row">
                     <div class="col-md-5 d-flex justify-content-center">
-                        <img className="imgPeriod" src={HTTP_SERVER_PORT_PICTURES + this.props.periods.icon} alt="/"/>
+                        <img className="imgPeriod" src={HTTP_SERVER_PORT_PICTURES + this.props.periods.img} alt="/"/>
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-5 d-flex justify-content-center">
-                        Lorem ipsum
-                        <Link to={'/quizz/' + this.props.periods.link}>
+                        {this.props.periods.desc}
+                        <Link to={this.props.periods.link}>
                             <button type="button" class="btn btn-outline-default waves-effect">
                                 Discover more
                             </button>

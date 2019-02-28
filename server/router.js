@@ -20,7 +20,10 @@ const protect = (req, res, f) => {
               if (data) f(req, res);
               else res.json({isConnected: false})
           }
-})
+        }
+      )
+    };
+
 
 router
   .use(express.static('resources'))
@@ -28,6 +31,7 @@ router
   .use(bodyParser.urlencoded({
     extended: true
   })) // for parsing application/x-www-form-urlencoded
+
   .get("/users", (req, res) => {
     protect(req, res, () =>
       Users
@@ -38,6 +42,7 @@ router
       }
     ))
   })
+
   .get("/firstPeriod", (req, res) => {
     console.log(1,FirstPeriod);
     FirstPeriod
@@ -48,8 +53,9 @@ router
         res.json(data);
         }
       })
-  }).
-  get("/quizz/:id", (req, res) => {
+  })
+
+  .get("/quizz/:id", (req, res) => {
     console.log("Route ", req.params.id);
     Quizzes.findOne({
         _id: req.params.id
@@ -58,6 +64,7 @@ router
         else res.json(data);
     });
   })
+
   .post("/login", (req, res) => {
     if (!req.body.username || !req.body.password) {
         res.json({isConnected: false})
@@ -72,6 +79,7 @@ router
             })
     }
 })
+
 .post("/signUp", (req, res) => {
     if (!req.body.username || !req.body.password) {
         res.json({isConnected: false})
@@ -91,6 +99,7 @@ router
             })
     }
 })
+
   .use((req, res) => {
     res.status(400);
     res.json({
