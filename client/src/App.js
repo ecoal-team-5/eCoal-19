@@ -4,6 +4,8 @@ import {BrowserRouter, Switch, Route, Link} from "react-router-dom";
 import Home from "./Home.js";
 import About from "./About.js";
 import Quizz from "./Quizz.js";
+
+import Login from "./Login";
 import FirstPeriod from "./FirstPeriod.js";
 import AddQuestion from "./AddQuestion.js";
 
@@ -23,7 +25,7 @@ class NavBar extends Component {
 		return(
 			<nav className="navbar navbar-light amber lighten-4 mb-4">
 			
-			  <a className="navbar-brand" href="#">Da Vinci's Discovery</a>
+			  <a className="navbar-brand" href="/">Da Vinci's Discovery</a>
 			
 			  <button className="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20">
 				<div className="animated-icon1"><span></span><span></span><span></span></div>
@@ -31,17 +33,19 @@ class NavBar extends Component {
 			
 			  <div className="collapse navbar-collapse" id="navbarSupportedContent20">
 			
-				<ul className="navbar-nav mr-auto">
-				  <li className="nav-item active">
-					<Link to={'/'} className="nav-link">Home</Link>
-				  </li>
-				  <li className="nav-item">
-					<Link to={'/newquestion'} className="nav-link">Add a Question</Link>
-				  </li>
-				  <li className="nav-item">
-					<Link to={'/about'} className="nav-link">About</Link>
-				  </li>
-				</ul>
+					<ul className="navbar-nav mr-auto">
+						<li className="nav-item active">
+						<Link to={'/'} className="nav-link">Home</Link>
+						</li>
+						{ Login.getUser() ? <li className="nav-item">
+							<Link to={'/newquestion'} className="nav-link">Add a Question</Link>
+							</li> : null }
+						<li className="nav-item">
+						<Link to={'/about'} className="nav-link">About</Link>
+						</li>
+					</ul>
+
+					<Login checkConnexion={(b) => this.checkConnexion(b)}/>
 			
 			  </div>
 			
@@ -62,6 +66,8 @@ class Path extends Component {
 							<Route exact={true} path="/quizz/:id" component={Quizz}/>
 							<Route exact={true} path="/firstperiod" component={FirstPeriod}/>
 							<Route exact={true} path="/newquestion" component={AddQuestion}/>
+							<Route exact={true} path="/login" component={AddQuestion}/>
+							<Route exact={true} path="/signup" component={AddQuestion}/>
 							<Route path="*" component={() => <p>Page not Found</p>} />
 						</Switch>
 				</div>
