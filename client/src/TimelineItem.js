@@ -42,7 +42,7 @@ class TimelineItem extends Component {
                                 </ul>
 
                 </section>
-		);
+    		);
     }
 }
 
