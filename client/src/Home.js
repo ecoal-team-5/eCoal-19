@@ -49,7 +49,8 @@ class Home extends Component {
         let periods = [firstPeriod, secondPeriod, thirdPeriod];
 
         return(
-            <div>
+            <div className="view__content">
+                    
                 {periods.map (q => <TimelineItem periods={q} />)}
             </div>
         )
