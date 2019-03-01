@@ -9,6 +9,10 @@ a{
     font-family: inherit;
 }
 
+a:hover{
+    color: inherit
+}
+
 .imgquizz{
     width: 200px;
 }
@@ -17,6 +21,7 @@ a{
     border-radius: 50%;
     height: 200px;
     width: 200px;
+    z-index: 1
 }
 
 .place {
@@ -230,4 +235,71 @@ h1, h2, h3{
     -moz-transform: rotate(-135deg);
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg);
+    }
+
+
+    /** TIMELINE SECTION **/
+
+
+    .wrapper__dates{
+        padding: 15px;
+    }
+
+    .timeline__list{
+        list-style: none;
+        position: relative;
+    }
+
+    .timeline__list__item{
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .timeline__list__figure{
+        width: 50%;
+        position: relative;
+        padding: 20px;
+        text-align: right
+    }
+
+    .figure__square{
+        position: absolute;
+        top: 10px;
+        left: 10%;
+        margin-left: auto;
+        margin-right: auto;
+        z-index: -1;
+    }
+
+    .figure__line{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .timeline__list__desc-link{
+        width: 50%;
+        margin: 0;
+        padding: 20px;
+    }
+
+ /*   .discover__button{
+        display: inline-block;
+        padding: 10px;
+        border: 2px solid #7a0026
+    }
+
+    .discover__button:hover{
+        color: white;
+        background-color: #7a0026;
+    }*/
+
+    .discover__button{
+        display: flex;
+        color: inherit;
+        float: none;
+        margin: auto;
+        max-width: 900px;
+        align-items: center;
+        z-index: 1;
     }
