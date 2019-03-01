@@ -10,8 +10,10 @@ class AddQuestion extends Component {
         this.state=({
             answerType : "txt",
             nbrQ : 2,
-            value : "addFirstPeriod"
+            database : "addFirstPeriod"
         })
+
+        this.handleChange = this.handleChange.bind(this);
         
     }
 
@@ -32,8 +34,7 @@ class AddQuestion extends Component {
     }
 
     handleChange(e){
-        this.setState({value : e.target.value})
-        console.log(this.state.value)
+        this.setState({database : e.target.value})
     }
 
     addToDB(e){
@@ -42,7 +43,7 @@ class AddQuestion extends Component {
         let sols = [];
 
         let ch = document.getElementsByClassName('check');
-        console.log("AAA" + ch.length);
+
         for(let i = 0; i < ch.length;i++) {
             if(ch[i].checked)
                 sols.push(i);
@@ -51,6 +52,7 @@ class AddQuestion extends Component {
         let txts = [];
 
         let qTxts = document.getElementsByClassName('text');
+
         for(let i = 0; i < qTxts.length;i++) {
                 txts.push(qTxts[i].value);
         }
@@ -73,12 +75,17 @@ class AddQuestion extends Component {
             txtAnswers: txts,
             imgAnswers: imgs,
             solutions: sols,
-            points : sols.length
+            points : sols.length,
+            tip : ''
         }
 
-        console.log("db : ", this.state.value)
+        console.log("db : ", this.state.database)
 
-        axios.post(HTTP_SERVER_PORT + this.state.value,   // The json object to add in the collection
+        console.log("txts : ", txts)
+
+        console.log("sols : ", sols)
+
+        axios.post(HTTP_SERVER_PORT + this.state.database,   // The json object to add in the collection
             question
         ).then(res => {
         if (res.status === 200)
@@ -101,13 +108,12 @@ class AddQuestion extends Component {
                 Questions.push("<input class='imgs' type='file'/><input class='check' type='checkbox'/><br/>");
             }
         }
-        console.log(this.state.answerType);
 
         return(
 
             <form onSubmit={(e) =>  this.addToDB(e)}>
                 Your question is about the : 
-                <br /><br /><br /><br /><br /><br /><br /><select class="database" onChange={e => this.handleChange(e)} value={this.state.value}>
+                <select className="database" onChange={e => this.handleChange(e)} value={this.state.value}>
                     <option value="addFirstPeriod">First Period</option>
                     <option value="addSecondPeriod">Second Period</option>
                     <option value="addThirdPeriod">Third Period</option>
