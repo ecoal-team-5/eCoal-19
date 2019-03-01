@@ -7,12 +7,19 @@ class Question extends Component{
 
     render(){
         return(
-            <form onSubmit={(e) => this.props.nextQuestion(e)}>
-                <h2>{this.props.question.question}</h2><br/>
-                {this.props.question.imgAnswers.map(img => <div><input type="checkbox" /><img src={HTTP_SERVER_PORT_PICTURES + img} className="imgquizz" alt="/"/></div> )}
-                {this.props.question.txtAnswers.map(txt => <div><input type="checkbox" name='c' />{txt}</div>  )}
-                <input type="submit" />
-            </form>
+            <div className="form-group form__group">
+
+                <form className="form__questions" onSubmit={(e) => this.props.nextQuestion(e)}>
+                    <h2>{this.props.question.question}</h2><br/>
+                    {this.props.question.imgAnswers.map(img => <div className="answer"><input type="checkbox" /><img src={HTTP_SERVER_PORT_PICTURES + img} className="imgquizz" alt="/"/></div> )}
+                    {this.props.question.txtAnswers.map(txt => <div className="answer"><input type="checkbox" id="checkbox" name='c' />{txt} <label for="checkbox"></label></div>  )}
+                    <div className="container__submit">
+                        <input type="submit" value="Answer" id="submit" className="submit"/>
+                    </div>
+                </form>
+
+            </div>
+
         )
     }
 }
